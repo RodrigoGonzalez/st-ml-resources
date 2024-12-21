@@ -502,9 +502,9 @@ st.sidebar.markdown(
     - Memory Percentage: **{st.session_state.memory_info['percent']}%**
     
     #### Disk Information
-    - Total Disk: **{st.session_state.disk_info['total'] / (1024 ** 3):,.2f} GB**
-    - Used Disk: **{st.session_state.disk_info['used'] / (1024 ** 3):,.2f} GB**
-    - Free Disk: **{st.session_state.disk_info['free'] / (1024 ** 3):,.2f} GB**
+    - Total Disk: **{st.session_state.disk_info['total'] / (1024 ** 3):,.5f} GB**
+    - Used Disk: **{st.session_state.disk_info['used'] / (1024 ** 3):,.5f} GB**
+    - Free Disk: **{st.session_state.disk_info['free'] / (1024 ** 3):,.5f} GB**
     - Disk Percentage: **{st.session_state.disk_info['percent']}%**
     """
 )
