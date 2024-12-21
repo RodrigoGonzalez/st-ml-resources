@@ -1,47 +1,8 @@
 import streamlit as st
-import os
-import platform
-import sys
 
-import psutil
-
-import shutil
-
-# Specify the path (e.g., root directory)
-path = "/"
-
-# Get disk usage statistics
-total, used, free = shutil.disk_usage(path)
-
-PLATFORM_INFO = {
-    "platform_system": platform.system(),
-    "platform_release": platform.release(),
-    "platform_version": platform.version(),
-    "platform_machine": platform.machine(),
-    "platform_processor": platform.processor(),
-    "cpu_count": os.cpu_count(),
-    "cpu_percent": psutil.cpu_percent(),
-    "use_dev_snowflake": platform.system() != "Darwin",
-    "sys_modules": sys.modules,
-    "platform_info_set": True,
-    "memory_info": {
-        "total": psutil.virtual_memory().total / (1024 ** 2),
-        "available": psutil.virtual_memory().available / (1024 ** 2),
-        "used": psutil.virtual_memory().used / (1024 ** 2),
-        "percent": psutil.virtual_memory().percent,
-    },
-    "disk_info": {
-        "total": total / (2 ** 30),
-        "used": used / (2 ** 30),
-        "free": free / (2 ** 30),
-        "percent": (used / total) * 100,
-    },
-}
-
-def add_defaults_to_session(session_dict):
-    for k, v in session_dict.items():
-        if k not in st.session_state:
-            st.session_state[k] = v
+from st_ml_resources.core.helper_functions import add_public_images_to_session_state
+from st_ml_resources.core.session_helpers import PLATFORM_INFO
+from st_ml_resources.core.session_helpers import add_defaults_to_session
 
 add_defaults_to_session(PLATFORM_INFO)
 
@@ -508,20 +469,6 @@ st.sidebar.markdown(
     - Disk Percentage: **{st.session_state.disk_info['percent']}%**
     """
 )
-
-def add_public_images_to_session_state():
-    import os
-    from PIL import Image
-
-    public_folder = "public"
-    if not os.path.exists(public_folder):
-        raise FileNotFoundError(f"The folder '{public_folder}' does not exist.")
-
-    for filename in os.listdir(public_folder):
-        if filename.endswith(".jpeg"):
-            image_path = os.path.join(public_folder, filename)
-            image = Image.open(image_path)
-            st.session_state[filename] = image
 
 # Call the function to add images to session state
 add_public_images_to_session_state()
