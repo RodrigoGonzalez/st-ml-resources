@@ -463,7 +463,7 @@ st.markdown(
 )
 
 st.sidebar.markdown(
-    """
+    f"""
     #### Platform Information
     - System: **{st.session_state.platform_system}**
     - Release: **{st.session_state.platform_release}**
