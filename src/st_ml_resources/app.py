@@ -22,7 +22,6 @@ st.sidebar.markdown(
     
     - [Deep Learning & Machine Learning Resources](#deep-learning--machine-learning-resources)
       - [Work In Progress](#work-in-progress)
-      - [Table of Contents](#table-of-contents)
       - [Research Papers](#research-papers)
         - [Websites](#websites)
         - [Papers](#papers)
@@ -55,15 +54,8 @@ st.sidebar.markdown(
 
 st.markdown(
     """
-
     This page contains an extensive collection of resources related to machine learning and deep learning. The focus is on materials relevant to theory, practical implementation, and specialized areas such as large language models (LLMs) and image diffusion methods. Contributions are welcome through either opening a new [issue](https://github.com/dgwyer/ml-resources/issues/new) or submitting a [PR](https://github.com/dgwyer/ml-resources/pulls).  
-    
-    ## Work In Progress
-    
-    This resource list is in an early stage of development. The organization and structure of topics might shift as more references are added. Suggestions for improvement can be submitted through this [issue link](https://github.com/dgwyer/ml-resources/issues/new).  
-    
-    A significant share of these resources center on diffusion models, reflecting the current emphasis of this collection. Submissions of language-based resources are encouraged—please share them via this [issue link](https://github.com/dgwyer/ml-resources/issues/new) if you have recommendations.
-    
+
     ## Research Papers
     
     ### Websites
