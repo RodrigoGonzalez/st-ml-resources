@@ -1,8 +1,33 @@
 import streamlit as st
+import os
+import platform
+import sys
+
+import psutil
+
+PLATFORM_INFO = {
+    "platform_system": platform.system(),
+    "platform_release": platform.release(),
+    "platform_version": platform.version(),
+    "platform_machine": platform.machine(),
+    "platform_processor": platform.processor(),
+    "cpu_count": os.cpu_count(),
+    "cpu_percent": psutil.cpu_percent(),
+    "use_dev_snowflake": platform.system() != "Darwin",
+    "sys_modules": sys.modules,
+    "platform_info_set": True,
+    "memory_info": {
+        "total": psutil.virtual_memory().total / (1024 ** 2),
+        "available": psutil.virtual_memory().available / (1024 ** 2),
+        "used": psutil.virtual_memory().used / (1024 ** 2),
+        "percent": psutil.virtual_memory().percent,
+    },
+}
+
 
 st.markdown(
     "<h1 style='text-align: center;'>"
-    "Machine Learning Resources 🚀"
+    "Deep Learning & Machine Learning Resources 🚀"
     "</h1>"
     "<h2 style='text-align: center;'>"
     "A collection of resources for machine learning."
@@ -49,7 +74,6 @@ st.sidebar.markdown(
 
 st.markdown(
     """
-    # Deep Learning & Machine Learning Resources
 
     This page contains an extensive collection of resources related to machine learning and deep learning. The focus is on materials relevant to theory, practical implementation, and specialized areas such as large language models (LLMs) and image diffusion methods. Contributions are welcome through either opening a new [issue](https://github.com/dgwyer/ml-resources/issues/new) or submitting a [PR](https://github.com/dgwyer/ml-resources/pulls).  
     
@@ -435,5 +459,26 @@ st.markdown(
     - [MLOps guide](https://huyenchip.com/mlops/)  
     - [ghapi](https://ghapi.fast.ai/)  
 
+    """
+)
+
+st.sidebar.markdown(
+    """
+    #### Platform Information
+    - System: **{st.session_state.platform_system}**
+    - Release: **{st.session_state.platform_release}**
+    - Version: **{st.session_state.platform_version.split(";")[0]}**
+    - Machine: **{st.session_state.platform_machine}**
+    - Processor: **{st.session_state.platform_processor}**
+
+    #### CPU Information
+    - CPU Count: **{st.session_state.cpu_count}**
+    - CPU Percentage: **{st.session_state.cpu_percent}%**
+
+    #### Memory Information
+    - Total Memory: **{st.session_state.memory_info['total'] / (1024 ** 2):,.2f} MB**
+    - Available Memory: **{st.session_state.memory_info['available'] / (1024 ** 2):,.2f} MB**
+    - Used Memory: **{st.session_state.memory_info['used'] / (1024 ** 2):,.2f} MB**
+    - Memory Percentage: **{st.session_state.memory_info['percent']}%**
     """
 )
