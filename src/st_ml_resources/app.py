@@ -5,6 +5,14 @@ import sys
 
 import psutil
 
+import shutil
+
+# Specify the path (e.g., root directory)
+path = "/"
+
+# Get disk usage statistics
+total, used, free = shutil.disk_usage(path)
+
 PLATFORM_INFO = {
     "platform_system": platform.system(),
     "platform_release": platform.release(),
@@ -21,6 +29,12 @@ PLATFORM_INFO = {
         "available": psutil.virtual_memory().available / (1024 ** 2),
         "used": psutil.virtual_memory().used / (1024 ** 2),
         "percent": psutil.virtual_memory().percent,
+    },
+    "disk_info": {
+        "total": total / (2 ** 30),
+        "used": used / (2 ** 30),
+        "free": free / (2 ** 30),
+        "percent": (used / total) * 100,
     },
 }
 
@@ -486,6 +500,12 @@ st.sidebar.markdown(
     - Available Memory: **{st.session_state.memory_info['available'] / (1024 ** 2):,.2f} MB**
     - Used Memory: **{st.session_state.memory_info['used'] / (1024 ** 2):,.2f} MB**
     - Memory Percentage: **{st.session_state.memory_info['percent']}%**
+    
+    #### Disk Information
+    - Total Disk: **{st.session_state.disk_info['total'] / (1024 ** 3):,.2f} GB**
+    - Used Disk: **{st.session_state.disk_info['used'] / (1024 ** 3):,.2f} GB**
+    - Free Disk: **{st.session_state.disk_info['free'] / (1024 ** 3):,.2f} GB**
+    - Disk Percentage: **{st.session_state.disk_info['percent']}%**
     """
 )
 
