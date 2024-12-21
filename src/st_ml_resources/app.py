@@ -24,6 +24,12 @@ PLATFORM_INFO = {
     },
 }
 
+def add_defaults_to_session(session_dict):
+    for k, v in session_dict.items():
+        if k not in st.session_state:
+            st.session_state[k] = v
+
+add_defaults_to_session(PLATFORM_INFO)
 
 st.markdown(
     "<h1 style='text-align: center;'>"
