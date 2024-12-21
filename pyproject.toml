@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "st-ml-resources"
+version = "0.1.0"
+description = "Machine Learning Resources for streamlit app"
+authors = ["Rodrigo Gonzalez <r@rodrigo-gonzalez.com>"]
+license = "MIT"
+readme = "README.md"
+
+packages = [
+    { include = "st_ml_resources", from = "src" },
+]
+
+include = ["README.md", "LICENSE", "CHANGELOG.md"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+streamlit = {version = "^1.41.1", extras = ["snowflake"]}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
